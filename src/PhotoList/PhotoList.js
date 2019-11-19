@@ -1,15 +1,19 @@
 import React from 'react';
-import './PhotoList.css';
 
-const PhotoList = ({ photos }) => {
-  console.log(photos)
-  return (
+import './PhotoList.css';
+import Photo from '../Photo';
+
+const PhotoList = ({ photos }) => (
   <div>
     {
-      photos.map(photo => (<img alt="marsPhoto" src={`${photo.img_src}`}/>))
+      photos.map(photo => (
+        <Photo
+          key={photo.id}
+          photo={photo}
+        />
+      ))
     }
   </div>
 );
-  }
 
 export default PhotoList;
