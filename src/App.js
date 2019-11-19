@@ -1,17 +1,31 @@
 import React, { Component } from 'react';
+import axios from 'axios';
+import moment from 'moment-timezone';
 import './App.css';
+
+const apiKey = 'O1K8q8dMY1QGZbhEozaCYKyFbvowCkWe6PE2apM1';
 
 class App extends Component {
   state = {
-    date: '',
+    date: moment().format('YYYY-MM-DD'),
     photoList: [],
   }
   
   componentDidMount() {
+    this.fetchPhotosByDate(this.state.date)
+  }
+  
+  fetchPhotosByDate = (date) => {
+    const marsRoverAPI = `https://api.nasa.gov/mars-photos/api/v1/rovers/curiosity/photos?earth_date=${date}&api_key=${apiKey}`;
+    axios.get(marsRoverAPI)
+      .then(function(response) {
+        console.log(response)
+      });
 
   }
 
   render() {
+    console.log(this.state);
     return (
       <div className="App">
         <header className="App-header">
@@ -24,7 +38,9 @@ class App extends Component {
 
 export default App;
 
-// fetch photos of today and render on load
+// fetch photos from https://api.nasa.gov/ (Mars Rover Photos API)
+
+// find most recent date in which there is at least one photo
 // when date is changed, use the date to search photos of the selected date
 // update state (photos) and pass to list of photos
 
