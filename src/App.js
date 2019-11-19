@@ -30,7 +30,7 @@ class App extends Component {
           });
         } else {
           currentComponent.setState({
-            date: '2019-09-27'
+            date: '2019-09-15'
           }, () => {console.log(`state, ${currentComponent.state}`); currentComponent.fetchPhotosByDate(currentComponent.state.date)})
         }
       });
@@ -41,7 +41,9 @@ class App extends Component {
       date,
       photoList,
     } = this.state;
-    
+
+    // make pretty date
+
     return (
       <div className="App">
         <header className="App-header">
