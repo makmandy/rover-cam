@@ -24,21 +24,30 @@ class App extends Component {
     axios.get(marsRoverAPI)
       .then(function(response) {
         console.log(response.data)
-        if (response.data) {
+        if (response.data && response.data.photos.length >0) {
           currentComponent.setState({
             photoList: response.data.photos
           });
+        } else {
+          currentComponent.setState({
+            date: '2019-09-27'
+          }, () => {console.log(`state, ${currentComponent.state}`); currentComponent.fetchPhotosByDate(currentComponent.state.date)})
         }
       });
   }
 
   render() {
+    const {
+      date,
+      photoList,
+    } = this.state;
     console.log(this.state);
     return (
       <div className="App">
         <header className="App-header">
           <h1>rovercam</h1>
-          <PhotoList photos={this.state.photoList} />
+          <h3>{date}</h3>
+          <PhotoList photos={photoList} />
         </header>
       </div>
     );
