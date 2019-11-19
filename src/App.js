@@ -1,7 +1,10 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import moment from 'moment-timezone';
+
 import './App.css';
+
+import PhotoList from './PhotoList';
 
 const apiKey = 'O1K8q8dMY1QGZbhEozaCYKyFbvowCkWe6PE2apM1';
 
@@ -12,16 +15,21 @@ class App extends Component {
   }
   
   componentDidMount() {
-    this.fetchPhotosByDate(this.state.date)
+    this.fetchPhotosByDate(this.state.date);
   }
   
   fetchPhotosByDate = (date) => {
+    const currentComponent = this;
     const marsRoverAPI = `https://api.nasa.gov/mars-photos/api/v1/rovers/curiosity/photos?earth_date=${date}&api_key=${apiKey}`;
     axios.get(marsRoverAPI)
       .then(function(response) {
-        console.log(response)
+        console.log(response.data)
+        if (response.data) {
+          currentComponent.setState({
+            photoList: response.data.photos
+          });
+        }
       });
-
   }
 
   render() {
@@ -30,6 +38,7 @@ class App extends Component {
       <div className="App">
         <header className="App-header">
           <h1>rovercam</h1>
+          <PhotoList photos={this.state.photoList} />
         </header>
       </div>
     );
