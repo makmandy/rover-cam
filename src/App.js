@@ -2,9 +2,9 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import moment from 'moment-timezone';
 
-import './App.css';
-
 import PhotoList from './PhotoList';
+
+import './App.css';
 
 const apiKey = 'O1K8q8dMY1QGZbhEozaCYKyFbvowCkWe6PE2apM1';
 
@@ -41,7 +41,7 @@ class App extends Component {
       date,
       photoList,
     } = this.state;
-    console.log(this.state);
+    
     return (
       <div className="App">
         <header className="App-header">
