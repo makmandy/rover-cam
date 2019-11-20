@@ -6,7 +6,6 @@ import './DateSelector.css';
 class DateSelector extends Component {
   render() {
     const {
-      clearDate,
       date,
       fetchPhotosByDate,
       handleChangeDate,
@@ -18,7 +17,6 @@ class DateSelector extends Component {
         type="date"
         className="dateSelector"
         value={date}
-        onClick={clearDate}
         onChange={handleChangeDate}
       />
       <button
@@ -30,7 +28,6 @@ class DateSelector extends Component {
 }
 
 DateSelector.propTypes = {
-  clearDate: PropTypes.func,
   date: PropTypes.string,
   fetchPhotosByDate: PropTypes.func,
   handleChangeDate: PropTypes.func,

@@ -7,17 +7,14 @@ import PhotoList from './PhotoList';
 
 import './App.css';
 
-const apiKey = 'O1K8q8dMY1QGZbhEozaCYKyFbvowCkWe6PE2apM1'; // mandymak.me@gmail.com
-// const apiKey = '19ln0qyjBjLvAVVTMyDkySBtJ8bjPILEe9DMmyUz'; // the.mandylorian@yahoo.com
-// const apiKey = 'oWGtn7Cr0mfDmhyKnZbqfhzlfoWNzX4NZ1xzwSw5'; // mandymak22@gmail.com
-// const apiKey = 'puEOOLaX0YFF3XtIfYbH9SUXu1pSlT0LAfsG52OZ'; // hongyi.mak@icloud.com
-// const apiKey = 'SQs64vdbPO2EuNbCvC74KMJnvR8m1x6Wobgezqp6'; // karena.scott@gmail.com
-
+const apiKey = 'O1K8q8dMY1QGZbhEozaCYKyFbvowCkWe6PE2apM1';
+const prettyMomentFormat = 'MM/DD/YYYY';
 
 class App extends Component {
   state = {
     date: '',
     photoList: [],
+    dateOfMostRecentPhotosAvailable: '',
   }
   
   componentDidMount() {
@@ -25,13 +22,15 @@ class App extends Component {
   }
   
   fetchPhotosByDate = async (date) => {
-    console.log('searching date', date);
     const marsRoverAPI = `https://api.nasa.gov/mars-photos/api/v1/rovers/curiosity/photos?earth_date=${date}&api_key=${apiKey}`;
     await axios.get(marsRoverAPI)
       .then((response) => {
         this.setState({
           photoList: response.data.photos || []
         });
+      })
+      .catch((error) => {
+        console.error(error);
       });
   }
 
@@ -42,7 +41,10 @@ class App extends Component {
       searchDate = moment(searchDate).subtract(1, 'days').format('YYYY-MM-DD');
       await this.fetchPhotosByDate(searchDate);
     }
-    this.setState({date: searchDate});
+    this.setState({
+      date: searchDate,
+      dateOfMostRecentPhotosAvailable: searchDate,
+    });
     return;
   }
 
@@ -53,17 +55,17 @@ class App extends Component {
 
   }
 
-  clearDate = () => {
-    this.setState({
-      date: '',
-    });
-  }
-
   render() {
     const {
       date,
       photoList,
+      dateOfMostRecentPhotosAvailable,
     } = this.state;
+
+    const roverLandingDate = '2012-08-06';
+    const prettyRoverLandingDate = moment(roverLandingDate).format(prettyMomentFormat);
+
+    const prettyDateOfRecentPhotosAvailable = moment(dateOfMostRecentPhotosAvailable).format(prettyMomentFormat);
 
     return (
       <div className="App">
@@ -72,22 +74,46 @@ class App extends Component {
           <DateSelector
             date={date}
             handleChangeDate={this.handleChangeDate}
-            clearDate={this.clearDate}
             fetchPhotosByDate={() => this.fetchPhotosByDate(date)}
           />
           {
-            photoList.length > 0 ? (
+            photoList.length > 0 &&
             <div>
               <PhotoList photos={photoList} />
             </div>
-            ) : (
-            <div>
+          }
+          <div>
+          {/* loading text, when most recent photos are loading */}
+          {
+            !date &&
               <h3>
                 Loading the most recent photos from Mars...
               </h3>
-            </div>
-            )
           }
+          {/* EMPTY STATES */}
+          {/* date selected is later than the most recent date of available photos */}
+          {
+            ((date > dateOfMostRecentPhotosAvailable) && (photoList.length === 0)) &&
+              <h4>
+                {`Sorry! There haven't been new Mars Rover photos since ${prettyDateOfRecentPhotosAvailable}. Please try an earlier date.`}
+              </h4>
+          }
+          {/* date selected is earlier than the Mars Rover landing date */}
+          {
+            (date && (date < roverLandingDate) && (photoList.length === 0)) &&
+            <h4>
+              {`Oops! The Mars Rover, Curiosity, didn't land until ${prettyRoverLandingDate}. Please try a later date.`}
+            </h4>
+          }
+          {/* date selected is between the landing date and the most recent date of available photos
+            but no photos are available */}
+          {
+            (date && (date < dateOfMostRecentPhotosAvailable) && (date > roverLandingDate) && (photoList.length === 0)) &&
+            <h4>
+              {`Sorry! There aren't any photos available for the date that you have selected. Please try another date.`}
+            </h4>
+          }
+          </div>
         </header>
       </div>
     );
