@@ -10,6 +10,8 @@ Welcome! This project was bootstrapped with [Create React App](https://github.co
 - Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
 ## Screenshots
-![Screen Shot 2019-11-20 at 1 49 58 PM](https://user-images.githubusercontent.com/34462288/69281190-bf451200-0b9c-11ea-9094-873e7c792081.png)
-![Screen Shot 2019-11-20 at 1 50 34 PM](https://user-images.githubusercontent.com/34462288/69281295-e13e9480-0b9c-11ea-9d8f-b1ace577d5aa.png)
-![Screen Shot 2019-11-20 at 1 50 19 PM](https://user-images.githubusercontent.com/34462288/69281302-e56ab200-0b9c-11ea-8451-bb11526f0b11.png)
+![Screen Shot 2019-11-20 at 3 12 22 PM](https://user-images.githubusercontent.com/34462288/69286541-654a4980-0ba8-11ea-80c7-e01f87bd2b24.png)
+![Screen Shot 2019-11-20 at 3 12 56 PM](https://user-images.githubusercontent.com/34462288/69286542-654a4980-0ba8-11ea-8167-78e96c3289bc.png)
+![Screen Shot 2019-11-20 at 3 13 03 PM](https://user-images.githubusercontent.com/34462288/69286543-65e2e000-0ba8-11ea-9c97-8e07a681b6f3.png)
+![Screen Shot 2019-11-20 at 3 13 33 PM](https://user-images.githubusercontent.com/34462288/69286544-65e2e000-0ba8-11ea-84c5-50dda89daafc.png)
+![Screen Shot 2019-11-20 at 3 13 48 PM](https://user-images.githubusercontent.com/34462288/69286545-65e2e000-0ba8-11ea-9f83-f17578c8b97b.png)
