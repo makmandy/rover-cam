@@ -12,9 +12,19 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   background-color: #282c34;
-  padding: 5vh;
+  padding: 5vh 0vh;
 }
 
 *:focus {
   outline: none;
+}
+
+button {
+  background-color: transparent;
+  color: #09d3ac;
+  font-size: 20px;
+  padding: 1vh;
+  border-radius: 5px;
+  font-weight: 700;
+  border: solid 1px #09d3ac;
 }
