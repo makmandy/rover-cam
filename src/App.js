@@ -6,16 +6,16 @@ import PhotoList from './PhotoList';
 
 import './App.css';
 
-// const apiKey = 'O1K8q8dMY1QGZbhEozaCYKyFbvowCkWe6PE2apM1'; // mandymak.me@gmail.com
+const apiKey = 'O1K8q8dMY1QGZbhEozaCYKyFbvowCkWe6PE2apM1'; // mandymak.me@gmail.com
 // const apiKey = '19ln0qyjBjLvAVVTMyDkySBtJ8bjPILEe9DMmyUz'; // the.mandylorian@yahoo.com
 // const apiKey = 'oWGtn7Cr0mfDmhyKnZbqfhzlfoWNzX4NZ1xzwSw5'; // mandymak22@gmail.com
 // const apiKey = 'puEOOLaX0YFF3XtIfYbH9SUXu1pSlT0LAfsG52OZ'; // hongyi.mak@icloud.com
-const apiKey = 'SQs64vdbPO2EuNbCvC74KMJnvR8m1x6Wobgezqp6'; // karena.scott@gmail.com
+// const apiKey = 'SQs64vdbPO2EuNbCvC74KMJnvR8m1x6Wobgezqp6'; // karena.scott@gmail.com
 
 
 class App extends Component {
   state = {
-    date: 'Calling Mars for photos...',
+    date: '',
     photoList: [],
   }
   
@@ -39,7 +39,6 @@ class App extends Component {
     while (this.state.photoList.length === 0) {
       searchDate = moment(searchDate).subtract(1, 'days').format('YYYY-MM-DD');
       await this.fetchPhotosByDate(searchDate);
-      console.log(this.state.photoList)
     }
     this.setState({date: searchDate});
     return;
@@ -51,16 +50,25 @@ class App extends Component {
       photoList,
     } = this.state;
 
-    // make pretty date
+    const prettyDate = moment(date).format('MMMM DD, YYYY');
 
     return (
       <div className="App">
         <header className="App-header">
           <h1>rovercam</h1>
-          <h3>{date}</h3>
           {
-          photoList.length > 0 &&
-            <PhotoList photos={photoList} />
+            photoList.length > 0 ? (
+            <div>
+              <h3>{prettyDate}</h3>
+              <PhotoList photos={photoList} />
+            </div>
+            ) : (
+            <div>
+              <h3>
+                Loading the most recent photos from Mars...
+              </h3>
+            </div>
+            )
           }
         </header>
       </div>

@@ -1,9 +1,8 @@
 .photoContainer {
   position: relative;
-  flex-direction: row;
   padding: 2vh;
   float: left;
-  width: 24%;
+  width: 22%;
 }
 
 .image {
