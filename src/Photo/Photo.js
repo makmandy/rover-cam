@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+
 import './Photo.css';
 
 class Photo extends Component {
@@ -26,4 +28,7 @@ class Photo extends Component {
   }
 }
 
+Photo.propTypes = {
+  // maybe destructure from PhotoList
+}
 export default Photo;

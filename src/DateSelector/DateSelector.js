@@ -1,23 +1,19 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import moment from 'moment-timezone';
 
 import './DateSelector.css';
 
 class DateSelector extends Component {
   render() {
     const {
-      clearDate, 
+      clearDate,
       date,
-      handleChangeDate,
       fetchPhotosByDate,
+      handleChangeDate,
     } = this.props;
-
-    const prettyDate = moment(date).format('MMMM DD, YYYY');
 
     return (
       <div>
-      <h3>{prettyDate}</h3>
       <input
         type="date"
         className="dateSelector"
@@ -25,14 +21,19 @@ class DateSelector extends Component {
         onClick={clearDate}
         onChange={handleChangeDate}
       />
-      <button onClick={fetchPhotosByDate}>search</button>
+      <button
+        className="button"
+        onClick={fetchPhotosByDate}>&rarr;</button>
       </div>
     )
   }
 }
 
 DateSelector.propTypes = {
+  clearDate: PropTypes.func,
   date: PropTypes.string,
+  fetchPhotosByDate: PropTypes.func,
+  handleChangeDate: PropTypes.func,
 };
 
 export default DateSelector;

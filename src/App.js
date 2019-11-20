@@ -69,15 +69,15 @@ class App extends Component {
       <div className="App">
         <header className="App-header">
           <h1>rovercam</h1>
+          <DateSelector
+            date={date}
+            handleChangeDate={this.handleChangeDate}
+            clearDate={this.clearDate}
+            fetchPhotosByDate={() => this.fetchPhotosByDate(date)}
+          />
           {
             photoList.length > 0 ? (
             <div>
-              <DateSelector
-                date={date}
-                handleChangeDate={this.handleChangeDate}
-                clearDate={this.clearDate}
-                fetchPhotosByDate={() => this.fetchPhotosByDate(date)}
-              />
               <PhotoList photos={photoList} />
             </div>
             ) : (
