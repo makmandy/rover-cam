@@ -1,3 +1,7 @@
+.dateSelectorContainer {
+  border-bottom: 1px solid white;
+}
+
 .dateSelector {
   font-size: 20px;
   font-weight: 700;
@@ -12,7 +16,7 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   background-color: #282c34;
-  padding: 5vh 0vh;
+  padding: 5vh 0vh 1vh;
 }
 
 *:focus {
@@ -23,7 +27,7 @@ button {
   background-color: transparent;
   color: #09d3ac;
   font-size: 20px;
-  padding: 1vh;
+  padding: 0vh 1vh;
   border-radius: 5px;
   font-weight: 700;
   border: solid 1px #09d3ac;

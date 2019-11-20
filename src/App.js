@@ -79,10 +79,10 @@ class App extends Component {
       <div className="App">
         <header className="App-header">
           <h1 className="title">Major Tom Goes to Mars</h1>
-          <span className="subtitle">this is Major Tom to Ground Control</span>
+          <span className="subtitle">♫ this is Major Tom to Ground Control</span>
           <span className="subtitle">{"i'm stepping through the door"}</span>
           <span className="subtitle">{"and i'm floating in a most peculiar way"}</span>
-          <span className="subtitle">{"and the stars look very different today"}</span>
+          <span className="subtitle">{"and the stars look very different today ♫"}</span>
           <DateSelector
             date={date}
             handleChangeDate={this.handleChangeDate}

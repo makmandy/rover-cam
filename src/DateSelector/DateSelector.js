@@ -8,7 +8,7 @@ const DateSelector = ({
   fetchPhotosByDate,
   handleChangeDate,
 }) => (
-  <div>
+  <div className="dateSelectorContainer">
     <input
       type="date"
       className="dateSelector"
