@@ -70,7 +70,11 @@ class App extends Component {
     return (
       <div className="App">
         <header className="App-header">
-          <h1>rovercam</h1>
+          <h1 className="title">Major Tom Goes to Mars</h1>
+          <h9 className="subtitle">this is Major Tom to Ground Control</h9>
+          <h9 className="subtitle">{"i'm stepping through the door"}</h9>
+          <h9 className="subtitle">{"and i'm floating in a most peculiar way"}</h9>
+          <h9 className="subtitle">{"and the stars look very different today"}</h9>
           <DateSelector
             date={date}
             handleChangeDate={this.handleChangeDate}
@@ -95,22 +99,14 @@ class App extends Component {
           {
             ((date > dateOfMostRecentPhotosAvailable) && (photoList.length === 0)) &&
               <h4>
-                {`Sorry! There haven't been new Mars Rover photos since ${prettyDateOfRecentPhotosAvailable}. Please try an earlier date.`}
+                {`Sorry! Major Tom hasn't reported with new photos since ${prettyDateOfRecentPhotosAvailable}. Please try an earlier date.`}
               </h4>
           }
           {/* date selected is earlier than the Mars Rover landing date */}
           {
             (date && (date < roverLandingDate) && (photoList.length === 0)) &&
             <h4>
-              {`Oops! The Mars Rover, Curiosity, didn't land until ${prettyRoverLandingDate}. Please try a later date.`}
-            </h4>
-          }
-          {/* date selected is between the landing date and the most recent date of available photos
-            but no photos are available */}
-          {
-            (date && (date < dateOfMostRecentPhotosAvailable) && (date > roverLandingDate) && (photoList.length === 0)) &&
-            <h4>
-              {`Sorry! There aren't any photos available for the date that you have selected. Please try another date.`}
+              {`Oops! Major Tom didn't land until ${prettyRoverLandingDate}. Please try a later date.`}
             </h4>
           }
           </div>

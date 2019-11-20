@@ -11,3 +11,12 @@
   font-size: calc(10px + 2vmin);
   color: #09d3ac;
 }
+
+.title {
+  margin: 5vh 0vh 1vh;
+}
+
+.subtitle {
+  margin: 0vh;
+  font-style: italic;
+}
