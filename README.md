@@ -4,7 +4,7 @@ Welcome! This project was bootstrapped with [Create React App](https://github.co
 
 ## To run the app
 - Clone or download this repo using the [provided link](https://github.com/makmandy/rover-cam.git).
-- Make sure that you have `npm` and `yarn` installed. You will need them in order to install the dependencies and run the app. If you have `Homebrew` installed, you can run `brew install npm` and `brew install yarn` to install them.
+- Make sure that you have `npm` and `yarn` installed. You will need them in order to install the dependencies and run the app. If you have `Homebrew` installed, you can run `brew install npm` and `brew install yarn` to install them. (This project has been developed and tested on `node` v12.13.1, `npm` v6.12.1, and `yarn` v1.7.1.)
 - `cd` into `rover-cam` and run `npm install` to install the dependencies.
 - Run `yarn start`.
 - Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
