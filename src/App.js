@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import moment from 'moment-timezone';
 
+import DateSelector from './DateSelector';
 import PhotoList from './PhotoList';
 
 import './App.css';
@@ -50,8 +51,6 @@ class App extends Component {
       photoList,
     } = this.state;
 
-    const prettyDate = moment(date).format('MMMM DD, YYYY');
-
     return (
       <div className="App">
         <header className="App-header">
@@ -59,7 +58,7 @@ class App extends Component {
           {
             photoList.length > 0 ? (
             <div>
-              <h3>{prettyDate}</h3>
+              <DateSelector date={date} />
               <PhotoList photos={photoList} />
             </div>
             ) : (
