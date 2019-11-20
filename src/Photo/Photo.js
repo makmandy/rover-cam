@@ -26,7 +26,7 @@ const Photo = ({
   );
 
 Photo.propTypes = {
-  id: PropTypes.string,
+  id: PropTypes.number,
   cameraName: PropTypes.string,
   roverName: PropTypes.string,
   imageSrc: PropTypes.string,
