@@ -73,15 +73,16 @@ class App extends Component {
     const roverLandingDate = '2012-08-06';
     const prettyRoverLandingDate = moment(roverLandingDate).format(prettyMomentFormat);
     const prettyDateOfRecentPhotosAvailable = moment(dateOfMostRecentPhotosAvailable).format(prettyMomentFormat);
+    const prettyDate = moment(date).format(prettyMomentFormat);
 
     return (
       <div className="App">
         <header className="App-header">
           <h1 className="title">Major Tom Goes to Mars</h1>
-          <h9 className="subtitle">this is Major Tom to Ground Control</h9>
-          <h9 className="subtitle">{"i'm stepping through the door"}</h9>
-          <h9 className="subtitle">{"and i'm floating in a most peculiar way"}</h9>
-          <h9 className="subtitle">{"and the stars look very different today"}</h9>
+          <span className="subtitle">this is Major Tom to Ground Control</span>
+          <span className="subtitle">{"i'm stepping through the door"}</span>
+          <span className="subtitle">{"and i'm floating in a most peculiar way"}</span>
+          <span className="subtitle">{"and the stars look very different today"}</span>
           <DateSelector
             date={date}
             handleChangeDate={this.handleChangeDate}
@@ -94,12 +95,18 @@ class App extends Component {
             </div>
           }
           <div>
+
           {/* loading text, when most recent photos are loading */}
           {
             !date &&
               <h3>
                 Loading the most recent photos from Mars...
               </h3>
+          }
+          {/* loading text */}
+          {
+            date && loading &&
+            <h3>Loading photos from {prettyDate}...</h3>
           }
           {/* EMPTY STATES */}
           {/* date selected is later than the most recent date of available photos */}
