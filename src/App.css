@@ -22,7 +22,7 @@
 }
 
 .footerContainer {
-  position: fixed;
+  position: relative;
   height: 15vh;
   bottom: 1vh;
   width: 30vw;

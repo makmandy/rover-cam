@@ -7,7 +7,7 @@ import PhotoList from './PhotoList';
 
 import './App.css';
 
-const apiKey = 'O1K8q8dMY1QGZbhEozaCYKyFbvowCkWe6PE2apM1';
+const apiKey = 'O1K8q8dMY1QGZbhEozaCYKyFbvowCkWe6PE2apM1'; // This API key allows 5000 requests per hour per IP address. The public one, DEMO_KEY, only permits 50 requests per hour.
 const prettyMomentFormat = 'MM/DD/YYYY';
 
 class App extends Component {
@@ -35,8 +35,11 @@ class App extends Component {
   }
 
   fetchMostRecentPhotos = async () => {
-    let searchDate = moment().format('YYYY-MM-DD')
+    let searchDate = moment().format('YYYY-MM-DD');
+    
+    // fetch photos from today
     await this.fetchPhotosByDate(searchDate);
+    // if no photos are available, search the previous day (and the previous and so on) until there are photos available
     while (this.state.photoList.length === 0) {
       searchDate = moment(searchDate).subtract(1, 'days').format('YYYY-MM-DD');
       await this.fetchPhotosByDate(searchDate);
@@ -52,7 +55,6 @@ class App extends Component {
     this.setState({
       date: e.target.value,
     }, () => console.log(this.state.date));
-
   }
 
   render() {
@@ -64,7 +66,6 @@ class App extends Component {
 
     const roverLandingDate = '2012-08-06';
     const prettyRoverLandingDate = moment(roverLandingDate).format(prettyMomentFormat);
-
     const prettyDateOfRecentPhotosAvailable = moment(dateOfMostRecentPhotosAvailable).format(prettyMomentFormat);
 
     return (
@@ -111,11 +112,14 @@ class App extends Component {
           }
           </div>
         </header>
-        <div className="footerContainer">    
-          <div className="footer">
-            david bowie forever
+        {
+        photoList.length > 0 &&
+          <div className="footerContainer">    
+            <div className="footer">
+              david bowie forever
+            </div>
           </div>
-        </div>
+        }
       </div>
     );
   }
