@@ -138,7 +138,7 @@ class App extends Component {
         photoList.length > 0 &&
           <div className="footerContainer">    
             <div className="footer">
-              david bowie forever
+              bowie forever
             </div>
           </div>
         }
