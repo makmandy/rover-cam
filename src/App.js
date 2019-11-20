@@ -14,6 +14,7 @@ class App extends Component {
   state = {
     date: '',
     loading: false,
+    showLoadingText: false,
     photoList: [],
     dateOfMostRecentPhotosAvailable: '',
   }
@@ -24,13 +25,14 @@ class App extends Component {
   
   fetchPhotosByDate = async (date) => {
     this.setState({
-      loading: true,
+      showLoadingText: true,
     });
     const marsRoverAPI = `https://api.nasa.gov/mars-photos/api/v1/rovers/curiosity/photos?earth_date=${date}&api_key=${apiKey}`;
     await axios.get(marsRoverAPI)
       .then((response) => {
         this.setState({
           photoList: response.data.photos || [],
+          showLoadingText: false,
           loading: false,
         });
       })
@@ -59,6 +61,7 @@ class App extends Component {
   handleChangeDate = (e) => {
     this.setState({
       date: e.target.value,
+      loading: true,
     }, () => console.log(this.state.date));
   }
 
@@ -68,6 +71,7 @@ class App extends Component {
       photoList,
       dateOfMostRecentPhotosAvailable,
       loading,
+      showLoadingText,
     } = this.state;
 
     const roverLandingDate = '2012-08-06';
@@ -103,9 +107,9 @@ class App extends Component {
                 Loading the most recent photos from Mars...
               </h3>
           }
-          {/* loading text */}
+          {/* loading text for new searches */}
           {
-            date && loading &&
+            date && loading && showLoadingText && 
             <h3>Loading photos from {prettyDate}...</h3>
           }
           {/* EMPTY STATES */}
