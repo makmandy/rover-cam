@@ -5,24 +5,27 @@ import moment from 'moment-timezone';
 import './DateSelector.css';
 
 class DateSelector extends Component {
-  state = {
-    value: this.props.date,
-  }
-
-  handleChangeDate = (e) => {
-    this.setState({
-      value: e.target.value
-    }, () => console.log(this.state.value));
-
-  }
-
   render() {
-    const { date } = this.props;
+    const {
+      clearDate, 
+      date,
+      handleChangeDate,
+      fetchPhotosByDate,
+    } = this.props;
+
     const prettyDate = moment(date).format('MMMM DD, YYYY');
+
     return (
       <div>
       <h3>{prettyDate}</h3>
-      <input type="text" placeholder="MM/DD/YYYY" className="dateSelector" value={this.state.value} onChange={this.handleChangeDate} />
+      <input
+        type="date"
+        className="dateSelector"
+        value={date}
+        onClick={clearDate}
+        onChange={handleChangeDate}
+      />
+      <button onClick={fetchPhotosByDate}>search</button>
       </div>
     )
   }

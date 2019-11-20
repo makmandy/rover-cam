@@ -25,6 +25,7 @@ class App extends Component {
   }
   
   fetchPhotosByDate = async (date) => {
+    console.log('searching date', date);
     const marsRoverAPI = `https://api.nasa.gov/mars-photos/api/v1/rovers/curiosity/photos?earth_date=${date}&api_key=${apiKey}`;
     await axios.get(marsRoverAPI)
       .then((response) => {
@@ -45,6 +46,19 @@ class App extends Component {
     return;
   }
 
+  handleChangeDate = (e) => {
+    this.setState({
+      date: e.target.value,
+    }, () => console.log(this.state.date));
+
+  }
+
+  clearDate = () => {
+    this.setState({
+      date: '',
+    });
+  }
+
   render() {
     const {
       date,
@@ -58,7 +72,12 @@ class App extends Component {
           {
             photoList.length > 0 ? (
             <div>
-              <DateSelector date={date} />
+              <DateSelector
+                date={date}
+                handleChangeDate={this.handleChangeDate}
+                clearDate={this.clearDate}
+                fetchPhotosByDate={() => this.fetchPhotosByDate(date)}
+              />
               <PhotoList photos={photoList} />
             </div>
             ) : (
