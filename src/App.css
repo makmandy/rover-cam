@@ -20,3 +20,18 @@
   margin: 0vh;
   font-style: italic;
 }
+
+.footerContainer {
+  position: fixed;
+  height: 15vh;
+  bottom: 1vh;
+  width: 30vw;
+  left: 45vw;
+}
+
+.footer {
+  position: absolute;
+  bottom: 1vh;
+  color: #09d3ac;
+  text-align: center;
+}

@@ -12,7 +12,10 @@ const PhotoList = ({ photos }) => (
         <Photo
           className="photoList"
           key={photo.id}
-          photo={photo}
+          id={photo.id}
+          cameraName={photo.camera.full_name}
+          roverName={photo.rover.name}
+          imageSrc={photo.img_src}
         />
       ))
     }
