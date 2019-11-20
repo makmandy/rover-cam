@@ -92,14 +92,7 @@ class App extends Component {
             handleChangeDate={this.handleChangeDate}
             fetchPhotosByDate={() => this.fetchPhotosByDate(date)}
           />
-          {
-            photoList.length > 0 &&
-            <div>
-              <PhotoList photos={photoList} />
-            </div>
-          }
-          <div>
-
+          {/* LOADING STATES */}
           {/* loading text, when most recent photos are loading */}
           {
             !date &&
@@ -112,6 +105,15 @@ class App extends Component {
             date && loading && showLoadingText && 
             <h3>Loading photos from {prettyDate}...</h3>
           }
+
+          {
+            photoList.length > 0 &&
+            <div>
+              <PhotoList photos={photoList} />
+            </div>
+          }
+          <div>
+
           {/* EMPTY STATES */}
           {/* date selected is later than the most recent date of available photos */}
           {
