@@ -6,7 +6,9 @@ import PhotoList from './PhotoList';
 
 import './App.css';
 
-const apiKey = 'O1K8q8dMY1QGZbhEozaCYKyFbvowCkWe6PE2apM1';
+// const apiKey = 'O1K8q8dMY1QGZbhEozaCYKyFbvowCkWe6PE2apM1';
+// const apiKey = '19ln0qyjBjLvAVVTMyDkySBtJ8bjPILEe9DMmyUz';
+const apiKey = 'oWGtn7Cr0mfDmhyKnZbqfhzlfoWNzX4NZ1xzwSw5';
 
 class App extends Component {
   state = {
@@ -15,25 +17,28 @@ class App extends Component {
   }
   
   componentDidMount() {
-    this.fetchPhotosByDate(this.state.date);
+    this.fetchMostRecentPhotos();
   }
   
-  fetchPhotosByDate = (date) => {
-    const currentComponent = this;
+  fetchPhotosByDate = async (date) => {
     const marsRoverAPI = `https://api.nasa.gov/mars-photos/api/v1/rovers/curiosity/photos?earth_date=${date}&api_key=${apiKey}`;
-    axios.get(marsRoverAPI)
-      .then(function(response) {
-        console.log(response.data)
-        if (response.data && response.data.photos.length >0) {
-          currentComponent.setState({
-            photoList: response.data.photos
-          });
-        } else {
-          currentComponent.setState({
-            date: '2019-09-15'
-          }, () => {console.log(`state, ${currentComponent.state}`); currentComponent.fetchPhotosByDate(currentComponent.state.date)})
-        }
+    await axios.get(marsRoverAPI)
+      .then((response) => {
+        this.setState({
+          photoList: response.data.photos || []
+        });
       });
+  }
+
+  fetchMostRecentPhotos = async () => {
+    let searchDate = moment().format('YYYY-MM-DD')
+    await this.fetchPhotosByDate(searchDate);
+    while (this.state.photoList.length === 0) {
+      searchDate = moment(searchDate).subtract(1, 'days').format('YYYY-MM-DD');
+      await this.fetchPhotosByDate(searchDate);
+    }
+    this.setState({date: searchDate});
+    return;
   }
 
   render() {
@@ -49,7 +54,10 @@ class App extends Component {
         <header className="App-header">
           <h1>rovercam</h1>
           <h3>{date}</h3>
-          <PhotoList photos={photoList} />
+          {
+          photoList.length > 0 &&
+            <PhotoList photos={photoList} />
+          }
         </header>
       </div>
     );
