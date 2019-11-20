@@ -13,6 +13,7 @@ const prettyMomentFormat = 'MM/DD/YYYY';
 class App extends Component {
   state = {
     date: '',
+    loading: false,
     photoList: [],
     dateOfMostRecentPhotosAvailable: '',
   }
@@ -22,11 +23,15 @@ class App extends Component {
   }
   
   fetchPhotosByDate = async (date) => {
+    this.setState({
+      loading: true,
+    });
     const marsRoverAPI = `https://api.nasa.gov/mars-photos/api/v1/rovers/curiosity/photos?earth_date=${date}&api_key=${apiKey}`;
     await axios.get(marsRoverAPI)
       .then((response) => {
         this.setState({
-          photoList: response.data.photos || []
+          photoList: response.data.photos || [],
+          loading: false,
         });
       })
       .catch((error) => {
@@ -62,6 +67,7 @@ class App extends Component {
       date,
       photoList,
       dateOfMostRecentPhotosAvailable,
+      loading,
     } = this.state;
 
     const roverLandingDate = '2012-08-06';
@@ -108,6 +114,15 @@ class App extends Component {
             (date && (date < roverLandingDate) && (photoList.length === 0)) &&
             <h4>
               {`Oops! Major Tom didn't land until ${prettyRoverLandingDate}. Please try a later date.`}
+            </h4>
+          }
+          {/* date selected is between landing date and most recent date of available photos
+          but no photos are available */}
+          {
+            (date && (date > roverLandingDate) && (date < dateOfMostRecentPhotosAvailable) &&
+            !loading && (photoList.length === 0)) &&
+            <h4>
+              {`Oops! Major Tom didn't take any photos this day. Please try another date.`}
             </h4>
           }
           </div>
