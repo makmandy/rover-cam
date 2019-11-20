@@ -6,13 +6,16 @@ import PhotoList from './PhotoList';
 
 import './App.css';
 
-// const apiKey = 'O1K8q8dMY1QGZbhEozaCYKyFbvowCkWe6PE2apM1';
-// const apiKey = '19ln0qyjBjLvAVVTMyDkySBtJ8bjPILEe9DMmyUz';
-const apiKey = 'oWGtn7Cr0mfDmhyKnZbqfhzlfoWNzX4NZ1xzwSw5';
+// const apiKey = 'O1K8q8dMY1QGZbhEozaCYKyFbvowCkWe6PE2apM1'; // mandymak.me@gmail.com
+// const apiKey = '19ln0qyjBjLvAVVTMyDkySBtJ8bjPILEe9DMmyUz'; // the.mandylorian@yahoo.com
+// const apiKey = 'oWGtn7Cr0mfDmhyKnZbqfhzlfoWNzX4NZ1xzwSw5'; // mandymak22@gmail.com
+// const apiKey = 'puEOOLaX0YFF3XtIfYbH9SUXu1pSlT0LAfsG52OZ'; // hongyi.mak@icloud.com
+const apiKey = 'SQs64vdbPO2EuNbCvC74KMJnvR8m1x6Wobgezqp6'; // karena.scott@gmail.com
+
 
 class App extends Component {
   state = {
-    date: moment().format('YYYY-MM-DD'),
+    date: 'Calling Mars for photos...',
     photoList: [],
   }
   
@@ -36,6 +39,7 @@ class App extends Component {
     while (this.state.photoList.length === 0) {
       searchDate = moment(searchDate).subtract(1, 'days').format('YYYY-MM-DD');
       await this.fetchPhotosByDate(searchDate);
+      console.log(this.state.photoList)
     }
     this.setState({date: searchDate});
     return;
@@ -65,22 +69,3 @@ class App extends Component {
 }
 
 export default App;
-
-// fetch photos from https://api.nasa.gov/ (Mars Rover Photos API)
-
-// find most recent date in which there is at least one photo
-// when date is changed, use the date to search photos of the selected date
-// update state (photos) and pass to list of photos
-
-// initial state includes:
-  // photoList
-  // date
-
-// components in app
-  // date selector
-  // photogrid
-
-// PhotoGrid
-  // compose of Photo components
-
-// 

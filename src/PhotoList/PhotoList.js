@@ -9,6 +9,7 @@ const PhotoList = ({ photos }) => (
     {
       photos.map(photo => (
         <Photo
+          className="photoList"
           key={photo.id}
           photo={photo}
         />
